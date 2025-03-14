@@ -1,0 +1,121 @@
+body {
+  background-color: white;
+}
+
+.side-bar {
+  height: 100vh;
+  width: 220px;
+  background-color: #211C84;
+}
+
+.side-bar ul {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.side-bar ul li {
+  position: relative;
+  list-style: none;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  margin-left: 10px;
+  margin-bottom: 30px;
+  border-bottom-left-radius: 25px;
+  border-top-left-radius: 25px;
+  background-color: #211C84;
+  cursor: pointer;
+}
+
+.side-bar ul li:hover {
+  background-color: white;
+}
+
+
+.side-bar ul li:hover::before {
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  right: 0;
+  top: -20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 4px 4px 0 4px white;
+}
+
+.side-bar ul li:hover::after {
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  right: 0;
+  bottom: -20px;
+  border-top-right-radius: 20px;
+  box-shadow: 4px -4px 0 4px white;
+}
+
+.side-bar ul li:hover a {
+  color: #211C84;
+}
+
+.side-bar ul li.active {
+  background-color: white;
+  border-bottom-left-radius: 25px;
+  border-top-left-radius: 25px;
+}
+
+.side-bar ul li.active::before {
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  right: 0;
+  top: -20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 4px 4px 0 4px white;
+}
+
+.side-bar ul li.active::after {
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  right: 0;
+  bottom: -20px;
+  border-top-right-radius: 20px;
+  box-shadow: 4px -4px 0 4px white;
+}
+
+.side-bar ul li.active a {
+  color: #211C84;
+}
+
+.side-bar ul li:first-child {
+  margin-bottom: 70px;
+  pointer-events: none;
+}
+
+.side-bar ul li:last-child {
+  position: absolute;
+  width: calc(100% - 10px);
+  bottom: 0;
+
+}
+
+
+.side-bar ul li a {
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+}
+
+.side-bar ul li a .icon {
+  font-size: 20px;
+  padding-right: 20px;
+}

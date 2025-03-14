@@ -1,0 +1,60 @@
+.nav-bar {
+  position: fixed;
+  width: calc(100vw - 220px);
+  height: 65px;
+  left: 220px;
+  padding: 10px;
+  background-color: #4D55CC;
+  color: white;
+}
+
+.hamburger {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.search-box {
+  position: relative;
+  width: 55%;
+  height: 80%;
+}
+
+.search-box input {
+  height: 100%;
+  width: 100%;
+  border: 1px solid white;
+  padding-left: 15px;
+  border-radius: 20px;
+  color: white;
+  outline: none;
+  background: transparent;
+}
+
+.search-box input::placeholder {
+  color: white;
+}
+
+.search-box i {
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+  cursor: pointer;
+}
+
+.img-box {
+  height: 30px;
+  width: 30px;
+  margin-right: 20px;
+  background-color: #211C84;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.img-box img {
+  height: 100%;
+  width: 100%;
+}
