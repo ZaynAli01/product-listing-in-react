@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
-import NavBar from "../NavBar/NavBar"
 import "./style.css"
 
 export default function SideBar() {
   const [activeIndex, setActiveIndex] = useState(1);
-
 
   const menuItems = [
     { name: "Home", icon: "fa-solid fa-house" },
@@ -15,30 +13,26 @@ export default function SideBar() {
     { name: "Logout", icon: "fa-solid fa-right-from-bracket" }
   ];
 
-
-
   return (
-    <>
-      <div className="position-fixed  side-bar">
-        <ul>
-          <li>
-            <a href="#" className='animate__animated animate__fadeInLeft'><span className="icon"><i className="fa-brands fa-apple"></i></span>FakeStore</a>
+    <div className="position-fixed  side-bar">
+      <ul>
+        <li>
+          <a href="#" className='animate__animated animate__fadeInLeft'><span className="icon"><i className="fa-brands fa-apple"></i></span>FakeStore</a>
+        </li>
+        {menuItems.map((item, index) => (
+          <li
+            key={index}
+            className={index === activeIndex ? 'active' : ''}
+            onClick={() => setActiveIndex(index)}
+          >
+            <a href="#" className='animate__animated animate__fadeInLeft'>
+              <span className="icon"><i className={item.icon}></i></span>
+              {item.name}
+            </a>
           </li>
-          {menuItems.map((item, index) => (
-            <li
-              key={index}
-              className={index === activeIndex ? 'active' : ''}
-              onClick={() => setActiveIndex(index)}
-            >
-              <a href="#" className='animate__animated animate__fadeInLeft'>
-                <span className="icon"><i className={item.icon}></i></span>
-                {item.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <NavBar />
-    </>
+        ))}
+      </ul>
+    </div>
   )
+
 }
