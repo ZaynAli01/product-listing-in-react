@@ -1,0 +1,440 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(90deg, #7494ec, #c9d6ff);
+}
+
+
+.wapper-box {
+  position: relative;
+
+  height: 30rem;
+  width: 55rem;
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.wapper-box .login-form {
+  position: absolute;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  right: 0;
+  z-index: 2;
+  transition: .6s ease;
+  transition-delay: 1.6s;
+}
+
+.wapper-box.active .login-form {
+  right: -50%;
+}
+
+.login-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+  z-index: 1;
+}
+
+.login-content .inputs {
+  position: relative;
+  width: 100%;
+}
+
+.login-content .inputs input {
+  width: 100%;
+  height: 45px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  background-color: rgb(244 244 244);
+  padding: 15px;
+  padding-right: 40px;
+}
+
+.login-content .inputs i {
+  position: absolute;
+  right: 4%;
+  top: 30%;
+}
+
+.login-content button {
+  width: 100%;
+  height: 50px;
+  background-color: #7494ec;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  font-size: 20px;
+  font-weight: 600;
+  transition: .3s;
+}
+
+.login-content button:hover {
+  background-color: #4065c8;
+}
+
+
+a {
+  transition: .2s;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+a:hover {
+  color: #7494ec !important;
+  text-decoration: underline !important;
+}
+
+.login-content .socail-media-icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 59%;
+  height: 50px;
+}
+
+.socail-media-icons i {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 8px;
+  border: 1px solid black;
+  transition: .2s;
+  cursor: pointer;
+}
+
+
+.socail-media-icons i:hover {
+  background-color: #7494ec;
+  color: white;
+  border: 1px solid #7494ec;
+}
+
+
+.wapper-box .dont-acc {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  left: 0;
+  z-index: 3;
+  transition: .6s ease;
+  transition-delay: 1.5s;
+}
+
+.wapper-box.active .dont-acc {
+  left: -50%;
+  transition-delay: .7s;
+}
+
+.dont-acc-btn {
+  height: 9%;
+  width: 35%;
+  background-color: #7494ec;
+  border: 1px solid #7494ec;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: .4s;
+}
+
+.dont-acc-btn:hover {
+  background-color: #0b2363;
+  border: 1px solid #0b2363;
+}
+
+.toggle-box {
+  position: absolute;
+  height: 100%;
+  width: 200%;
+  left: -150%;
+  border-radius: 7rem;
+  /* border: 1px solid red; */
+  background-color: #4065c8;
+  z-index: 2;
+  transition: 2s ease-in-out;
+}
+
+.wapper-box.active .toggle-box {
+  left: 50%;
+}
+
+
+/* ################### register css ############### */
+
+
+.wapper-box .register-form {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: -50%;
+  transition: .6s ease;
+  transition-delay: 1.1s;
+}
+
+.wapper-box.active .register-form {
+  left: 0;
+  transition-delay: 1.5s;
+}
+
+.wapper-box .already-acc {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  right: -50%;
+  z-index: 333333;
+  transition: .6s ease;
+  transition-delay: .7s;
+}
+
+.wapper-box.active .already-acc {
+  right: 0;
+  transition-delay: 1.3s;
+}
+
+/* media */
+
+@media screen and (max-width: 918px) {
+  .wapper-box {
+    width: calc(100vw - 1rem);
+  }
+}
+
+@media screen and (max-width: 842px) {
+  .wapper-box {
+    position: relative;
+    height: calc(100vh - 1.5rem);
+  }
+
+  .wapper-box .login-form {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    position: absolute;
+  }
+
+  .wapper-box.active .login-form {
+    top: -100%;
+  }
+
+  .login-content {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .login-content h1 {
+    margin-bottom: 20px !important;
+  }
+
+
+  .login-content .inputs {
+    margin-bottom: 15px !important;
+  }
+
+  .login-content .inputs input {
+    height: 40px;
+  }
+
+  .login-content .inputs i {
+    right: 2%;
+  }
+
+  .login-content button {
+    font-size: 17px;
+    height: 40px;
+  }
+
+  .login-content .socail-media-icons {
+    height: 13%;
+    width: 31%;
+  }
+
+  .socail-media-icons i {
+    width: 30px;
+    height: 30px;
+    font-size: 17px;
+  }
+
+  .wapper-box .dont-acc {
+    bottom: 0;
+    width: 100%;
+    height: 30%;
+  }
+
+  .wapper-box .dont-acc button {
+    height: 20%;
+    width: 30%;
+  }
+
+  .wapper-box.active .dont-acc {
+    bottom: -30%;
+    left: 0;
+  }
+
+  .toggle-box {
+    top: 67%;
+    width: 100%;
+    height: 200%;
+    left: 0;
+  }
+
+  .wapper-box .register-form {
+    position: absolute;
+    width: 100%;
+    bottom: -100%;
+    left: 0;
+  }
+
+  .wapper-box.active .register-form {
+    bottom: -9px;
+    position: absolute;
+    width: 100%;
+    height: 59%;
+    left: 0;
+  }
+
+  .wapper-box .already-acc {
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 30%;
+  }
+
+  .wapper-box.active .already-acc {
+    top: 30px;
+    left: 0;
+    width: 100%;
+    height: 30%;
+  }
+
+  .wapper-box .already-acc button {
+    height: 20%;
+    width: 30%;
+  }
+
+  .wapper-box.active .toggle-box {
+    top: -160%;
+    left: 0;
+  }
+}
+
+@media screen and (max-width:550px) {
+  .login-content .socail-media-icons {
+    width: 50%;
+  }
+
+  .wapper-box .dont-acc button {
+    width: 25%;
+    font-size: 1.3rem;
+  }
+
+  .dont-acc h1 {
+    font-size: 2rem;
+  }
+
+  .dont-acc p {
+    font-size: 1rem !important;
+  }
+}
+
+@media screen and (max-width:454px) {
+  .wapper-box .dont-acc button {
+    width: 70%;
+    font-size: 115%;
+  }
+
+  .wapper-box .already-acc button {
+    width: 70%;
+  }
+
+  .dont-acc h1 {
+    font-size: 200%;
+  }
+
+  .dont-acc p {
+    font-size: 110% !important;
+  }
+
+  .toggle-box {
+    border-radius: 4rem;
+  }
+}
+
+@media screen and (max-width:400px) {
+
+  .login-content .socail-media-icons {
+    width: 70%;
+  }
+
+  .wapper-box .already-acc button {
+    width: 70%;
+  }
+
+  .wapper-box .dont-acc button {
+    width: 70%;
+    font-size: 1rem;
+  }
+
+  .dont-acc h1 {
+    font-size: 1.8rem;
+  }
+
+  .dont-acc p {
+    font-size: .9rem !important;
+  }
+
+  .toggle-box {
+    border-radius: 4rem;
+  }
+}
+
+@media screen and (max-width:376px) {
+  .login-content a {
+    font-size: 1rem;
+  }
+
+  .wapper-box .dont-acc button {
+    font-size: .9rem;
+  }
+}
+
+@media screen and (max-width:335px) {
+  .login-content a {
+    font-size: .8rem;
+  }
+
+  .login-content p {
+    font-size: .8rem;
+  }
+
+  .dont-acc h1 {
+    font-size: 1.5rem;
+  }
+
+  .dont-acc p {
+    font-size: .8rem !important;
+  }
+}
