@@ -60,6 +60,7 @@ export default function Cards() {
     setProducts(data);
   };
 
+
   useEffect(() => {
     getProducts();
   }, []);

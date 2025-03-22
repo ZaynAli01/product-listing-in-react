@@ -1,26 +1,51 @@
 import React, { useState } from 'react'
+import Icons from './Icons'
 import './style.css'
 
 export default function LoginSingUpForm() {
 
   const [isActive, setActive] = useState(false)
+  const [userDetail, setUserDetail] = useState({})
 
-  const registerBtn = () => {
-    setActive(true)
+  const handleOnChange = (event) => {
+    setUserDetail({ ...userDetail, [event.target.name]: event.target.value });
   }
 
-  const loginBtn = () => {
-    setActive(false)
+  const toggleActive = (event) => {
+    const button = event.target
+    button.disabled = true
+    setActive(!isActive)
+    setTimeout(() => { button.disabled = false }, 1000)
   }
 
-  const user = { username: 'john_doe', email: 'john@example.com', password: 'pass123' };
-  fetch('https://fakestoreapi.com/users', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(user)
-  })
-    .then(response => response.json())
-    .then(data => console.log(data));
+  const loginUser = async () => {
+    await fetch('https://dummyjson.com/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...userDetail,
+        ['expiresInMins']: 30, // optional, defaults to 60
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+      });
+  }
+
+  const createUser = async (event) => {
+    event.preventDefault();
+
+    await fetch('https://dummyjson.com/users/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(userDetail)
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+      }).catch((error) => console.log(error));
+  }
 
 
   return (
@@ -29,30 +54,27 @@ export default function LoginSingUpForm() {
       <div className="dont-acc">
         <h1 className='text-white display-5 fw-bold '>Hello Welcome!</h1>
         <p className='text-white fs-4 fw-medium'>Don't have an account?</p>
-        <button className='dont-acc-btn ' onClick={registerBtn}>Register</button>
+        <button className='dont-acc-btn ' onClick={toggleActive}>Register</button>
       </div>
 
 
       <div className="login-form">
-        <div className="login-content">
+        <div className="login-content ">
           <h1 className='mb-5 display-3 fw-bold'>Login</h1>
-          <div className="inputs mb-4">
-            <input type="text" name="" id="" placeholder='Email' />
-            <i class="fa-solid fa-user"></i>
-          </div>
-          <div className="inputs">
-            <input type="Password" name="" id="" placeholder='Password' />
-            <i class="fa-solid fa-lock"></i>
-          </div>
+          <form onSubmit={createUser}>
+            <div className="inputs mb-4">
+              <input type="text" name="username" id="" onChange={handleOnChange} value={userDetail.username} placeholder='Enter User Name' />
+              <i className="fa-solid fa-user"></i>
+            </div>
+            <div className="inputs">
+              <input type="Password" name="password" id="" onChange={handleOnChange} value={userDetail.password} placeholder='Enter Password' />
+              <i className="fa-solid fa-lock"></i>
+            </div>
+          </form>
           <a href="" className='text-decoration-none m-3 text-dark'>Forget Password?</a>
-          <button >Login</button>
+          <button onClick={loginUser} >Login</button>
           <p className='mt-3 mb-2'>Login with socail media platforms</p>
-          <div className="socail-media-icons">
-            <i class="fa-brands fa-google"></i>
-            <i class="fa-brands fa-facebook-f"></i>
-            <i class="fa-brands fa-github"></i>
-            <i class="fa-brands fa-linkedin-in"></i>
-          </div>
+          <Icons />
         </div>
       </div>
       <div className="toggle-box"></div>
@@ -60,26 +82,28 @@ export default function LoginSingUpForm() {
       <div className="register-form">
         <div className="login-content">
           <h1 className='mb-5 display-3 fw-bold'>SignUp</h1>
-          <div className="inputs mb-4">
-            <input type="text" name="" id="" placeholder='Username' />
-            <i class="fa-solid fa-user"></i>
-          </div>
-          <div className="inputs mb-4">
-            <input type="Password" name="" id="" placeholder='Email' />
-            <i class="fa-solid fa-envelope"></i>
-          </div>
-          <div className="inputs mb-4">
-            <input type="Password" name="" id="" placeholder='Password' />
-            <i class="fa-solid fa-lock"></i>
-          </div>
-          <button>SignUp</button>
+          <form onSubmit={createUser}>
+            <div className="inputs mb-4">
+              <input type="text" name="username" value={userDetail.username} id="" placeholder='Username' onChange={handleOnChange} />
+              <i className="fa-solid fa-user"></i>
+            </div>
+            <div className="inputs mb-4">
+              <input type="email" name="email" id="" value={userDetail.email} placeholder='Email' onChange={handleOnChange} />
+              <i className="fa-solid fa-envelope"></i>
+            </div>
+            <div className="inputs mb-4">
+              <input type="Password" name="password" value={userDetail.password} id="" placeholder='Password' onChange={handleOnChange} minLength={8} required />
+              <i className="fa-solid fa-lock"></i>
+            </div>
+            <button >SignUp</button>
+          </form>
         </div>
       </div>
 
       <div className="already-acc">
         <h1 className='text-white display-5 fw-bold '>Hello Welcome!</h1>
         <p className='text-white fs-4 fw-medium'>Already have an account?</p>
-        <button className='dont-acc-btn ' onClick={loginBtn}>Login</button>
+        <button className='dont-acc-btn ' onClick={toggleActive}>Login</button>
       </div>
 
     </div >
