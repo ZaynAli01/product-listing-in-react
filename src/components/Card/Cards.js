@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './style.css';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
-import Cart from '../cart/Cart';
+import Cart from '../Cart/Cart';
 
 const productUrl = 'https://fakestoreapi.com/products';
 
