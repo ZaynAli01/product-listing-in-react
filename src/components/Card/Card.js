@@ -6,7 +6,7 @@ import Cart from '../Cart/Cart';
 
 const productUrl = 'https://fakestoreapi.com/products';
 
-export default function Cards() {
+export default function Card() {
   useEffect(() => {
     Aos.init();
   }, []);
