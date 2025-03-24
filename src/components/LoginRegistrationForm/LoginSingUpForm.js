@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import Icons from './Icons'
 import './style.css'
+import Alert from './Alert'
 
 export default function LoginSingUpForm() {
 
   const [isActive, setActive] = useState(false)
   const [userDetail, setUserDetail] = useState({})
+  const [isResponseSuccessful, setIsResponseSuccessful] = useState(false)
+  const [alert, setAlert] = useState({})
 
   const handleOnChange = (event) => {
     setUserDetail({ ...userDetail, [event.target.name]: event.target.value });
@@ -18,7 +21,9 @@ export default function LoginSingUpForm() {
     setTimeout(() => { button.disabled = false }, 1000)
   }
 
-  const loginUser = async () => {
+  const loginUser = async (event) => {
+    event.preventDefault();
+
     await fetch('https://dummyjson.com/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -27,10 +32,31 @@ export default function LoginSingUpForm() {
         ['expiresInMins']: 30, // optional, defaults to 60
       }),
     })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-      });
+      .then(async res => {
+        if (res.status === 200) {
+          setIsResponseSuccessful(true);
+          setAlert({
+            "msg": "Login Successful",
+            'className': 'primary'
+          })
+          setTimeout(() => {
+            setIsResponseSuccessful(false);
+          }, 1500);
+        }
+        else {
+          setIsResponseSuccessful(true)
+          setAlert({
+            "msg": "Invalid Credential",
+            'className': 'danger'
+          })
+          setTimeout(() => {
+            setIsResponseSuccessful(false);
+          }, 1500);
+        }
+      }).catch((error) => {
+        console.log(error)
+      }
+      );
   }
 
   const createUser = async (event) => {
@@ -43,8 +69,25 @@ export default function LoginSingUpForm() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data)
-      }).catch((error) => console.log(error));
+        setIsResponseSuccessful(true);
+        setAlert({
+          "msg": "Register Successful",
+          'className': 'primary'
+        })
+        setTimeout(() => {
+          setIsResponseSuccessful(false);
+        }, 1500);
+      }).catch((error) => {
+        setIsResponseSuccessful(true)
+        setAlert({
+          "msg": "Something went wrong.",
+          'className': 'danger'
+        })
+        setTimeout(() => {
+          setIsResponseSuccessful(false);
+        }, 1500);
+      }
+      );
   }
 
 
@@ -61,20 +104,23 @@ export default function LoginSingUpForm() {
 
         <div className="login-form">
           <div className="login-content ">
-            <h1 className='mb-5 display-3 fw-bold'>Login</h1>
-            <form onSubmit={createUser}>
+            <h1 className={`${isResponseSuccessful ? 'mb-0' : 'mb-5'} display-3 fw-bold`}>Login</h1>
+            {isResponseSuccessful && <Alert alert={alert} />}
+            <form onSubmit={loginUser}>
               <div className="inputs mb-4">
-                <input type="text" name="username" id="" onChange={handleOnChange} value={userDetail.username} placeholder='Enter User Name' />
+                <input type="text" name="username" id="" onChange={handleOnChange} value={userDetail.username} placeholder='Enter User Name' required />
                 <i className="fa-solid fa-user"></i>
               </div>
-              <div className="inputs">
-                <input type="Password" name="password" id="" onChange={handleOnChange} value={userDetail.password} placeholder='Enter Password' />
+              <div className="inputs mb-4">
+                <input type="Password" name="password" id="" onChange={handleOnChange} value={userDetail.password} placeholder='Enter Password' required />
                 <i className="fa-solid fa-lock"></i>
               </div>
+              <div className='text-center mb-3'>
+                <a href="" className='text-decoration-none text-dark'>Forget Password?</a>
+              </div>
+              <button >Login</button>
             </form>
-            <a href="" className='text-decoration-none m-3 text-dark'>Forget Password?</a>
-            <button onClick={loginUser} >Login</button>
-            <p className='mt-3 mb-2'>Login with socail media platforms</p>
+
             <Icons />
           </div>
         </div>
@@ -82,18 +128,20 @@ export default function LoginSingUpForm() {
 
         <div className="register-form">
           <div className="login-content">
-            <h1 className='mb-5 display-3 fw-bold'>SignUp</h1>
+            <h1 className={`${!isResponseSuccessful ? 'mb-5' : 'mb-3'} display-3 fw-bold`}>SignUp</h1>
+            {isResponseSuccessful && <Alert alert={alert} />}
+
             <form onSubmit={createUser}>
               <div className="inputs mb-4">
-                <input type="text" name="username" value={userDetail.username} id="" placeholder='Username' onChange={handleOnChange} />
+                <input type="text" name="username" value={userDetail.username} id="" placeholder='Username' onChange={handleOnChange} required />
                 <i className="fa-solid fa-user"></i>
               </div>
               <div className="inputs mb-4">
-                <input type="email" name="email" id="" value={userDetail.email} placeholder='Email' onChange={handleOnChange} />
+                <input type="email" name="email" id="" value={userDetail.email} placeholder='Email' onChange={handleOnChange} required />
                 <i className="fa-solid fa-envelope"></i>
               </div>
               <div className="inputs mb-4">
-                <input type="Password" name="password" value={userDetail.password} id="" placeholder='Password' onChange={handleOnChange} minLength={8} required />
+                <input type="Password" name="password" value={userDetail.password} id="" placeholder='Password' onChange={handleOnChange} minLength={8} />
                 <i className="fa-solid fa-lock"></i>
               </div>
               <button >SignUp</button>

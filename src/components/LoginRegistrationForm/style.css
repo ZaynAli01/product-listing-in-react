@@ -10,7 +10,7 @@
 .wapper-box {
   position: relative;
 
-  height: 30rem;
+  height: 31rem;
   width: 55rem;
   background-color: #fff;
   border-radius: 20px;
@@ -313,7 +313,7 @@ a:hover {
   }
 
   .wapper-box.active .register-form {
-    bottom: -9px;
+    bottom: 0px;
     position: absolute;
     width: 100%;
     height: 59%;
