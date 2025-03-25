@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './style.css';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
-import Cart from '../Cart/Cart';
+import CartContext from '../../contextApi/CartContext'
 
 const productUrl = 'https://fakestoreapi.com/products';
 
@@ -11,47 +11,13 @@ export default function Card() {
     Aos.init();
   }, []);
 
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  const a = useContext(CartContext)
+
   const [products, setProducts] = useState([]);
-  const [addToCartProducts, setAddToCartProducts] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
-
-  const addQuantity = (product) => {
-    const updatedProducts = addToCartProducts.map((item) =>
-      item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-    );
-
-    setAddToCartProducts(updatedProducts);
-    setTotalPrice(totalPrice + product.price);
-  };
-
-  const removeQuantity = (product) => {
-    if (product.quantity > 1) {
-      const updatedProducts = addToCartProducts.map((item) =>
-        item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item
-      );
-      setAddToCartProducts(updatedProducts);
-      setTotalPrice(totalPrice - product.price);
-    } else {
-      const filteredProducts = addToCartProducts.filter((item) => item.id !== product.id);
-      setAddToCartProducts(filteredProducts);
-      setTotalPrice(totalPrice - product.price);
-    }
-  };
-
-  const addToCart = (product) => {
-    let index = addToCartProducts.findIndex((element) => element.id === product.id);
-
-    if (index !== -1) {
-      const updatedCart = addToCartProducts.map((item) =>
-        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-      );
-      setAddToCartProducts(updatedCart);
-    } else {
-      setAddToCartProducts([...addToCartProducts, { ...product, quantity: 1 }]);
-    }
-
-    setTotalPrice(totalPrice + product.price);
-  };
 
   const getProducts = async () => {
     let data = await fetch(productUrl)
@@ -60,15 +26,8 @@ export default function Card() {
     setProducts(data);
   };
 
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-
   return (
     <div className="container cards-sec">
-      <Cart cartProducts={addToCartProducts} addQuantity={addQuantity} removeQuantity={removeQuantity} totalPrice={totalPrice} />
-
       <div className="row">
         {products.map((item, index) => {
           return (
@@ -81,9 +40,9 @@ export default function Card() {
                   <h5 className="card-title">{item.title.slice(0, 53)}...</h5>
                   <p className="card-text flex-grow-1">
                     {item.description.slice(0, 131)}...{' '}
-                    <a href="#" className="text-decoration-none">
+                    <button className="btn text-primary">
                       read More
-                    </a>
+                    </button>
                   </p>
                   <div className="price">Rs. {item.price}</div>
                   <div className="rating mb-2">
@@ -93,7 +52,7 @@ export default function Card() {
                     <i className="fa-regular fa-star"></i>
                     <i className="fa-regular fa-star"></i>
                   </div>
-                  <a href="#" className="btn btn-primary mt-auto" onClick={() => addToCart(item)}>
+                  <a href="#" className="btn btn-primary text-decoration-none" onClick={() => a.addToCart(item)}>
                     Add to Cart
                   </a>
                 </div>

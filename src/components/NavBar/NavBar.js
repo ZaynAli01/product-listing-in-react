@@ -1,4 +1,5 @@
 import React from 'react'
+import Cart from '../Cart/Cart'
 import './style.css'
 import img from './dummy-man-570x570-1.png'
 
@@ -11,8 +12,11 @@ export default function NavBar() {
         <input type="text" placeholder='Search Here' />
         <i className="fa-solid fa-magnifying-glass"></i>
       </div>
-      <div className="img-box animate__animated animate__fadeInDown ">
-        <img src={img} alt="" />
+      <div className="cart-img-box">
+        <Cart />
+        <div className="img-box animate__animated animate__fadeInDown ">
+          <img src={img} alt="" />
+        </div>
       </div>
     </div>
   )

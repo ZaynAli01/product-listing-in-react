@@ -58,3 +58,14 @@
   height: 100%;
   width: 100%;
 }
+
+.cart-img-box {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 10%;
+}
+
+.cart-img-box .btn-group {
+  margin-right: 20px !important;
+}

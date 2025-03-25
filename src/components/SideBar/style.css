@@ -59,7 +59,7 @@ body {
 }
 
 .side-bar ul li:hover a {
-  color: #211C84;
+  color: #211C84 !important;
 }
 
 .side-bar ul li.active {
@@ -93,7 +93,7 @@ body {
 }
 
 .side-bar ul li.active a {
-  color: #211C84;
+  color: #211C84 !important;
 }
 
 .side-bar ul li:first-child {
@@ -108,9 +108,8 @@ body {
 
 }
 
-
 .side-bar ul li a {
-  text-decoration: none;
+  text-decoration: none !important;
   font-size: 20px;
   color: white;
 }

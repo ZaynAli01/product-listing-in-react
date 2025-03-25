@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Icons from './Icons'
+import Icons from '../Icons/Icons'
 import './style.css'
-import Alert from './Alert'
+import Alert from '../Alert/Alert'
 
 export default function LoginSingUpForm() {
 
@@ -120,10 +120,10 @@ export default function LoginSingUpForm() {
               </div>
               <button >Login</button>
             </form>
-
             <Icons />
           </div>
         </div>
+
         <div className="toggle-box"></div>
 
         <div className="register-form">

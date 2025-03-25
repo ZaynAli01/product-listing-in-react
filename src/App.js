@@ -8,11 +8,15 @@ import 'animate.css';
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<LoginSingUpForm />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
-    </Router>
+      <switch>
+        <Routes>
+          <Route path="/" element={<LoginSingUpForm />} />
+
+          <Route path="/dashboard" element={<Dashboard />
+          } />
+        </Routes>
+      </switch>
+    </Router >
   );
 }
 

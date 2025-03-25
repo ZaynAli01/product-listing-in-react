@@ -85,13 +85,13 @@
 }
 
 
-a {
+.login-form a {
   transition: .2s;
   font-size: 20px;
   font-weight: 600;
 }
 
-a:hover {
+.login-form a:hover {
   color: #7494ec !important;
   text-decoration: underline !important;
 }
