@@ -10,10 +10,8 @@ function App() {
     <Router>
       <switch>
         <Routes>
-          {/* <Route path="/" element={<LoginSingUpForm />} /> */}
-
-          <Route path="/dashboard" element={<Dashboard />
-          } />
+          <Route path="/" element={<LoginSingUpForm />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </switch>
     </Router >

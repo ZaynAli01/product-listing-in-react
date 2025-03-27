@@ -6,11 +6,11 @@ import CartContext from '../../contextApi/CartContext'
 
 export default function NavBar() {
 
-  const { handleHamburgerOn, handleHamburgerOff, isActive } = useContext(CartContext)
+  const { handleHamburgerToggle, isActive } = useContext(CartContext)
 
   return (
     <div className={`${isActive ? 'active' : ''} nav-bar d-flex justify-content-between align-items-center`}>
-      <div onClick={!isActive ? handleHamburgerOn : handleHamburgerOff} className="hamburger animate__animated animate__fadeInDown"><i className="fa-solid fa-bars"></i></div>
+      <div onClick={handleHamburgerToggle} className="hamburger animate__animated animate__fadeInDown"><i className="fa-solid fa-bars"></i></div>
       <div className="search-box animate__animated animate__fadeInDown">
         <input type="text" placeholder='Search Here' />
         <i className="fa-solid fa-magnifying-glass"></i>
