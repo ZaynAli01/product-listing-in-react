@@ -6,6 +6,13 @@
   padding: 20px;
   overflow: hidden;
   z-index: -1;
+  transition: .2s ease;
+}
+
+.cards-sec.active {
+  width: calc(100vw - 58px);
+  left: 56px;
+  margin-left: 20px;
 }
 
 .cards-sec .row {

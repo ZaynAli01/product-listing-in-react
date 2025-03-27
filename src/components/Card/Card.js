@@ -27,7 +27,7 @@ export default function Card() {
   };
 
   return (
-    <div className="container cards-sec">
+    <div className={`${a.isActive ? 'active' : ''} container cards-sec`} >
       <div className="row">
         {products.map((item, index) => {
           return (
@@ -61,6 +61,6 @@ export default function Card() {
           );
         })}
       </div>
-    </div>
+    </div >
   );
 }

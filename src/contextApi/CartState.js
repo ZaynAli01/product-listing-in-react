@@ -5,6 +5,17 @@ export default function CartState(props) {
 
   const [addToCartProducts, setAddToCartProducts] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [isActive, setIsActive] = useState(false)
+
+
+  const handleHamburgerOn = () => {
+    setIsActive(true)
+  }
+
+  const handleHamburgerOff = () => {
+    setIsActive(false)
+  }
+
 
   const addQuantity = (product) => {
     const updatedProducts = addToCartProducts.map((item) =>
@@ -45,7 +56,7 @@ export default function CartState(props) {
   };
 
   return (
-    <CartContext.Provider value={{ addQuantity, removeQuantity, addToCart, addToCartProducts, totalPrice }} >
+    <CartContext.Provider value={{ addQuantity, removeQuantity, addToCart, addToCartProducts, totalPrice, handleHamburgerOn, isActive, handleHamburgerOff }} >
       {props.children}
     </ CartContext.Provider >)
 }

@@ -6,6 +6,12 @@ body {
   height: 100vh;
   width: 220px;
   background-color: #211C84;
+  transition: .2s ease;
+}
+
+.side-bar.active {
+  width: 56px;
+  overflow: hidden;
 }
 
 .side-bar ul {
@@ -62,6 +68,10 @@ body {
   color: #211C84 !important;
 }
 
+.side-bar ul li:hover .icon {
+  color: #211C84 !important;
+}
+
 .side-bar ul li.active {
   background-color: white;
   border-bottom-left-radius: 25px;
@@ -96,6 +106,10 @@ body {
   color: #211C84 !important;
 }
 
+.side-bar ul li.active .icon {
+  color: #211C84 !important;
+}
+
 .side-bar ul li:first-child {
   margin-bottom: 70px;
   pointer-events: none;
@@ -114,7 +128,8 @@ body {
   color: white;
 }
 
-.side-bar ul li a .icon {
+.side-bar ul li .icon {
   font-size: 20px;
   padding-right: 20px;
+  color: white;
 }

@@ -10,7 +10,7 @@ function App() {
     <Router>
       <switch>
         <Routes>
-          <Route path="/" element={<LoginSingUpForm />} />
+          {/* <Route path="/" element={<LoginSingUpForm />} /> */}
 
           <Route path="/dashboard" element={<Dashboard />
           } />

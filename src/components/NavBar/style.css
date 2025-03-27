@@ -6,6 +6,12 @@
   padding: 10px;
   background-color: #4D55CC;
   color: white;
+  transition: .2s ease;
+}
+
+.nav-bar.active {
+  width: calc(100vw - 58px);
+  left: 56px;
 }
 
 .hamburger {

@@ -1,23 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import CartContext from '../../contextApi/CartContext'
 import "./style.css"
 
 export default function SideBar() {
+
   const [activeIndex, setActiveIndex] = useState(1);
+  const { isActive } = useContext(CartContext)
 
   const menuItems = [
     { name: "Home", icon: "fa-solid fa-house" },
-    { name: "Product", icon: "fa-solid fa-user" },
-    { name: "Orders", icon: "fa-solid fa-cart-shopping" },
+    { name: "Product", icon: "fa-brands fa-product-hunt fa-lg" },
+    { name: "Orders", icon: "fa-solid fa-cart-shopping", },
     { name: "Inbox", icon: "fa-solid fa-comment" },
     { name: "Setting", icon: "fa-solid fa-gear" },
     { name: "Logout", icon: "fa-solid fa-right-from-bracket" }
   ];
 
   return (
-    <div className="position-fixed  side-bar">
+    <div className={`${isActive ? 'active' : ''} position-fixed  side-bar`
+    }>
       <ul>
         <li>
-          <a href="#" className='animate__animated animate__fadeInLeft'><span className="icon"><i className="fa-brands fa-apple"></i></span>FakeStore</a>
+          <span className="icon"><i className="fa-brands fa-apple fa-xl"></i></span>
+          <a href="#" className='animate__animated animate__fadeInLeft'>FakeStore</a>
         </li>
         {menuItems.map((item, index) => (
           <li
@@ -25,14 +30,14 @@ export default function SideBar() {
             className={index === activeIndex ? 'active' : ''}
             onClick={() => setActiveIndex(index)}
           >
+            <span className="icon"><i className={item.icon}></i></span>
             <a href="#" className='animate__animated animate__fadeInLeft'>
-              <span className="icon"><i className={item.icon}></i></span>
               {item.name}
             </a>
           </li>
         ))}
       </ul>
-    </div>
+    </div >
   )
 
 }
