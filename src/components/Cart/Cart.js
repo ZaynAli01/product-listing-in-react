@@ -24,8 +24,11 @@ export default function Cart() {
                 <img src={item.image} alt="" />
               </div>
               <div className="product-content">
-                <p><b>{item.category}</b></p>
-                <p className="quantity ms-3"> <span onClick={() => a.removeQuantity(item)}>-</span> {item.quantity} <span onClick={() => a.addQuantity(item)}>+</span></p>
+                <div className='d-flex'>
+                  <p><b>{item.category}</b></p>
+                  <p className="quantity ms-3"> <span onClick={() => a.removeQuantity(item)}>-</span> {item.quantity} <span onClick={() => a.addQuantity(item)}>+</span></p>
+                </div>
+                <span role='button' onClick={() => a.deleteProduct(item)}><i class="fa-solid fa-trash fa-sm"></i></span>
               </div>
             </li>
           ))}

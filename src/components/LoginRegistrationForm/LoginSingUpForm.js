@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 import Icons from '../Icons/Icons'
 import './style.css'
 import Alert from '../Alert/Alert'
@@ -9,6 +10,15 @@ export default function LoginSingUpForm() {
   const [userDetail, setUserDetail] = useState({})
   const [isResponseSuccessful, setIsResponseSuccessful] = useState(false)
   const [alert, setAlert] = useState({})
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    let token = localStorage.getItem("authToken");
+    if (token) {
+      navigate("/dashboard"); // Redirect if token exists
+    }
+  }, [navigate]);
 
   const handleOnChange = (event) => {
     setUserDetail({ ...userDetail, [event.target.name]: event.target.value });
@@ -42,6 +52,9 @@ export default function LoginSingUpForm() {
           setTimeout(() => {
             setIsResponseSuccessful(false);
           }, 1500);
+          let response = await res.json()
+          localStorage.setItem("authToken", response.accessToken);
+          navigate("/dashboard");
         }
         else {
           setIsResponseSuccessful(true)
@@ -118,7 +131,7 @@ export default function LoginSingUpForm() {
               <div className='text-center mb-3'>
                 <a href="" className='text-decoration-none text-dark'>Forget Password?</a>
               </div>
-              <button >Login</button>
+              <button>Login</button>
             </form>
             <Icons />
           </div>

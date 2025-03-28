@@ -35,6 +35,13 @@ export default function CartState(props) {
     }
   };
 
+  const deleteProduct = (product) => {
+    let updatedPrice = product.quantity * product.price
+    let filteredProducts = addToCartProducts.filter((item) => item.id !== product.id);
+    setAddToCartProducts(filteredProducts);
+    setTotalPrice(totalPrice - updatedPrice);
+  }
+
   const addToCart = (product) => {
     let index = addToCartProducts.findIndex((element) => element.id === product.id);
 
@@ -51,7 +58,7 @@ export default function CartState(props) {
   };
 
   return (
-    <CartContext.Provider value={{ addQuantity, removeQuantity, addToCart, addToCartProducts, totalPrice, handleHamburgerToggle, isActive, }} >
+    <CartContext.Provider value={{ addQuantity, removeQuantity, addToCart, addToCartProducts, totalPrice, handleHamburgerToggle, isActive, deleteProduct }} >
       {props.children}
     </ CartContext.Provider >)
 }

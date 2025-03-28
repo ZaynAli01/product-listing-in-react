@@ -1,11 +1,18 @@
 import React, { useState, useContext } from 'react'
 import CartContext from '../../contextApi/CartContext'
 import "./style.css"
+import { useNavigate } from 'react-router-dom';
 
 export default function SideBar() {
 
   const [activeIndex, setActiveIndex] = useState(1);
   const { isActive } = useContext(CartContext)
+  const navigate = useNavigate();
+
+  const logOut = () => {
+    localStorage.removeItem('authToken')
+    navigate('/')
+  }
 
   const menuItems = [
     { name: "Home", icon: "fa-solid fa-house" },
@@ -28,7 +35,7 @@ export default function SideBar() {
           <li
             key={index}
             className={index === activeIndex ? 'active' : ''}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => item.name === 'Logout' ? logOut() : setActiveIndex(index)}
           >
             <span className="icon"><i className={item.icon}></i></span>
             <a href="#" className='animate__animated animate__fadeInLeft'>

@@ -30,12 +30,12 @@
 
 .product-content {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: end;
   align-items: end;
   width: 100%;
   line-height: 6px;
   margin-left: 20px;
-  margin-top: 10px;
 }
 
 .quantity span {
