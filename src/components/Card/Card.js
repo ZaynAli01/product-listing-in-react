@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import './style.css';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
@@ -6,7 +6,9 @@ import CartContext from '../../contextApi/CartContext'
 
 const productUrl = 'https://fakestoreapi.com/products';
 
+
 export default function Card() {
+
   useEffect(() => {
     Aos.init();
   }, []);
@@ -39,9 +41,8 @@ export default function Card() {
                 <div className="card-body d-flex flex-column flex-grow-1">
                   <h5 className="card-title">{item.title.slice(0, 53)}...</h5>
                   <p className="card-text flex-grow-1">
-                    {item.description.slice(0, 131)}...{' '}
-                    <button className="btn text-primary">
-                      read More
+                    {item.description.slice(0, 130)} ...<button className="btn text-primary" >
+                      read more
                     </button>
                   </p>
                   <div className="price">Rs. {item.price}</div>
