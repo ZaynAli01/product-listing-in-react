@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './style.css'
 import CartContext from '../../contextApi/CartContext'
 
@@ -12,13 +12,12 @@ export default function Cart() {
         <button type="button" className="btn btn-primary dropdown-toggle add-items-cart animate__animated animate__fadeInDown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"
         >
           <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-            {a.addToCartProducts.length}
-            <span className="visually-hidden">unread messages</span>
+            {a.carts.length}
           </span>
-          <i className="fa-solid fa-cart-plus dropdown-item"></i>
+          <i className="fa-solid fa-shopping-basket dropdown-item"></i>
         </button>
         <ul className="dropdown-menu">
-          {a.addToCartProducts.map((item, index) => (
+          {a.carts.length > 0 && a.carts[0].products.map((item, index) => (
             < li key={index} className="dropdown-item d-flex align-items-center border-bottom" >
               <div className="dropdown-img-box">
                 <img src={item.image} alt="" />

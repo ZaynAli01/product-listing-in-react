@@ -1,15 +1,13 @@
 import Sidebar from '../components/SideBar/SideBar'
 import NavBar from '../components/NavBar/NavBar'
-import Card from '../components/Card/Card'
 
 
-
-function Dashboard() {
+function Dashboard({ children }) {
   return (
     <>
       <Sidebar />
       <NavBar />
-      <Card />
+      {children}
     </>
   );
 }

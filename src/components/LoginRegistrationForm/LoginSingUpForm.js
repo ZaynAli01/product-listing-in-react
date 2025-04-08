@@ -54,6 +54,7 @@ export default function LoginSingUpForm() {
           }, 1500);
           let response = await res.json()
           localStorage.setItem("authToken", response.accessToken);
+          localStorage.setItem('user', JSON.stringify(response));
           navigate("/dashboard");
         }
         else {
