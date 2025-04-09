@@ -84,7 +84,7 @@ function ProductDetail(WrappedComponent) {
 
                     <div className="mb-3">
                       <span className="h5">{`Rs ${productDetail.price}`}</span>
-                      <span className="text-muted">/per box</span>
+                      <span className="text-muted"></span>
                     </div>
 
                     <p>
