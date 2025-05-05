@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProductDetail from './components/ProductPageDetail/ProductDetail';
 import DashboardProductPage from './components/Card/Card';
 import './App.css';
-import 'animate.css';
+import 'animate.css/animate.min.css';
 
 
 function App() {
