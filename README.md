@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+# 🛍️ React E-Commerce Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a complete **e-commerce web application** built using **React.js**, styled with **Bootstrap 5**, and powered by the [DummyJSON API](https://dummyjson.com). It includes user authentication, product listings, cart functionality, and a fully responsive, custom-designed interface — **designed and built entirely by me**.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+### 🔐 Authentication
+- Login using DummyJSON API  
+- Simulated Signup (frontend only)  
+- Logout functionality  
+- Global auth state managed using **React Context API**  
+- ✅ Dummy login credentials:
+  - **Username:** `emilys`
+  - **Password:** `emilyspass`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 🛒 Product & Cart
+- Fetch and display product listings  
+- Product Detail page  
+- Add to cart, update quantity, and remove items  
+- Automatic total price calculation based on item quantity  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 📊 Dashboard
+- Displays summary of user, product, and cart activity  
 
-### `npm test`
+### 🎨 Custom UI Design
+- Fully responsive layout built with **Bootstrap 5**  
+- Clean and intuitive user experience  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🧠 State Management
+- **React Context API** used for:
+  - Authentication
+  - Cart management
 
-### `npm run build`
+### ♻️ Higher-Order Components (HOC)
+- Used for protected routes and reusable logic  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 💫 Animations
+- Smooth transitions and scroll effects using the **AOS (Animate On Scroll)** library  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🧰 Technologies Used
 
-### `npm run eject`
+- React.js  
+- React Router DOM  
+- Bootstrap 5  
+- React Context API  
+- AOS Animation Library  
+- Fetch API  
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🛠️ Setup Instructions
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Clone the Project**
+```bash
+git clone https://github.com/ZaynAli01/product-listing-in-react.git
+cd product-listing-in-react
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. Install dependencies
+```bash
+npm install
+```
 
-## Learn More
+3. Run the application
+```bash
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Future Enhancements 
+- As I am in learning phase so this project needs improvment in many ways, I'll try to improve & implement following near future
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Improve project structure
+2. Centralize api logic
+3. Improve naming convention
+4. Optimize application where needed
+5. Integrate stripe payment method.
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+👨‍🎨 Designed By
+This project's complete design and layout were created by me from scratch — no templates used.
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+📄 License
+This project is open-source and intended for educational and demo purposes. Feel free to fork and build upon it.
