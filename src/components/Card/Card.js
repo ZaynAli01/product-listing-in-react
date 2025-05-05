@@ -23,7 +23,7 @@ function Card() {
     getProducts();
   }, []);
 
-  const a = useContext(CartContext)
+  const cart = useContext(CartContext)
 
   const [products, setProducts] = useState([]);
 
@@ -39,7 +39,7 @@ function Card() {
   }
 
   return (
-    <div className={`${a.isActive ? 'active' : ''} container cards-sec`} >
+    <div className={`${cart.isActive ? 'active' : ''} container cards-sec`} >
       <div className="row">
         {products.map((item, index) => {
           return (
@@ -61,7 +61,7 @@ function Card() {
                       {renderStar(item.rating)}
                     </div>
                   </div>
-                  <a href="#" className="btn btn-primary text-decoration-none" onClick={() => a.addCartProduct(item)}>
+                  <a href="#" className="btn btn-primary text-decoration-none" onClick={() => cart.addCartProduct(item)}>
                     Add to Cart
                   </a>
                 </div>

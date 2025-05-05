@@ -24,6 +24,13 @@ export default function SideBar() {
     { name: "Logout", icon: "fa-solid fa-right-from-bracket" }
   ];
 
+  const handleMenuItemClick = (index) => {
+    setActiveIndex(index);
+    if (index === 1) {
+      navigate('/dashboard')
+    }
+  }
+
   return (
     <div className={`${isActive ? 'active' : ''} position-fixed  side-bar`
     }>
@@ -36,7 +43,7 @@ export default function SideBar() {
           <li
             key={index}
             className={index === activeIndex ? 'active' : ''}
-            onClick={() => item.name === 'Logout' ? logOut() : setActiveIndex(index)}
+            onClick={() => item.name === 'Logout' ? logOut() : handleMenuItemClick(index)}
           >
             <span className="icon"><i className={item.icon}></i></span>
             <a href="#" className='animate__animated animate__fadeInLeft'>

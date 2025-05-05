@@ -3,7 +3,7 @@ import CartContext from './CartContext'
 
 export default function CartState(props) {
 
-  const [carts, setCarts] = useState([]);
+  const [cartProducts, setCartProducts] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isActive, setIsActive] = useState(false)
 
@@ -13,45 +13,45 @@ export default function CartState(props) {
   }
 
   const addQuantity = (product) => {
-    const updatedProducts = carts.map((item) =>
+    const updatedProducts = cartProducts.map((item) =>
       item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
     );
-
-    setCarts(updatedProducts);
+    debugger
+    setCartProducts(updatedProducts);
     setTotalPrice(totalPrice + product.price);
   };
 
   const removeQuantity = (product) => {
     if (product.quantity > 1) {
-      const updatedProducts = carts.map((item) =>
+      const updatedProducts = cartProducts.map((item) =>
         item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item
       );
-      setCarts(updatedProducts);
+      setCartProducts(updatedProducts);
       setTotalPrice(totalPrice - product.price);
     } else {
-      const filteredProducts = carts.filter((item) => item.id !== product.id);
-      setCarts(filteredProducts);
+      const filteredProducts = cartProducts.filter((item) => item.id !== product.id);
+      setCartProducts(filteredProducts);
       setTotalPrice(totalPrice - product.price);
     }
   };
 
   const deleteProduct = (product) => {
     let updatedPrice = product.quantity * product.price
-    let filteredProducts = carts.filter((item) => item.id !== product.id);
-    setCarts(filteredProducts);
+    let filteredProducts = cartProducts.filter((item) => item.id !== product.id);
+    setCartProducts(filteredProducts);
     setTotalPrice(totalPrice - updatedPrice);
   }
 
   const addToCart = (product) => {
-    let index = carts.findIndex((element) => element.id === product.id);
+    let index = cartProducts.findIndex((element) => element.id === product.id);
 
     if (index !== -1) {
-      const updatedCart = carts.map((item) =>
+      const updatedCart = cartProducts.map((item) =>
         item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
       );
-      setCarts(updatedCart);
+      setCartProducts(updatedCart);
     } else {
-      setCarts([...carts, { ...product, quantity: 1 }]);
+      setCartProducts([...cartProducts, { ...product, quantity: 1 }]);
     }
 
     setTotalPrice(totalPrice + product.price);
@@ -60,6 +60,7 @@ export default function CartState(props) {
 
   // Add to cart product api
   const addCartProduct = (product) => {
+    debugger
     let user = JSON.parse(localStorage.getItem('user'))
 
     fetch('https://dummyjson.com/carts/add', {
@@ -74,8 +75,8 @@ export default function CartState(props) {
     })
       .then(res => res.json())
       .then(res => {
-
-        setCarts(res.products)
+        setTotalPrice(totalPrice + res.products[0].price);
+        setCartProducts([...cartProducts, ...res.products])
       });
   }
 
@@ -98,7 +99,7 @@ export default function CartState(props) {
 
 
   return (
-    <CartContext.Provider value={{ addQuantity, removeQuantity, addToCart, carts, totalPrice, handleHamburgerToggle, isActive, deleteProduct, addCartProduct, getCartUser }} >
+    <CartContext.Provider value={{ addQuantity, removeQuantity, addToCart, cartProducts, totalPrice, handleHamburgerToggle, isActive, deleteProduct, addCartProduct, getCartUser }} >
       {props.children}
     </ CartContext.Provider >)
 }

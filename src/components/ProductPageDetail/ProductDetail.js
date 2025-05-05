@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './style.css';
 import { useParams } from 'react-router-dom';
 import Dashboard from '../../pages/Dashboard';
 import ReviewSection from './reviewSection/ReviewSection';
 import { renderStar } from '../../utils/ratingHelper';
+import CartContext from '../../contextApi/CartContext';
 
 
 function ProductDetail(WrappedComponent) {
   return function ProductDetailWrapper(props) {
     const { id } = useParams();
+    debugger
+    const { addCartProduct } = useContext(CartContext)
+
+
 
     const [productDetail, setProductDetail] = useState({})
 
@@ -18,7 +23,6 @@ function ProductDetail(WrappedComponent) {
         .then(data => setProductDetail(data));
     }, [id])
 
-    console.log(productDetail)
     const extraInfo = (
       <>
         {/* content */}
@@ -108,7 +112,7 @@ function ProductDetail(WrappedComponent) {
                     <hr />
 
                     <a href="#" className="btn btn-warning shadow-0 me-2">Buy now</a>
-                    <a href="#" className="btn btn-primary shadow-0 me-2">
+                    <a href="#" className="btn btn-primary shadow-0 me-2" onClick={() => addCartProduct(productDetail)}>
                       <i className="me-1 fa fa-shopping-basket"></i> Add to cart
                     </a>
                     <a href="#" className="btn btn-light border border-secondary py-2 icon-hover px-3">
