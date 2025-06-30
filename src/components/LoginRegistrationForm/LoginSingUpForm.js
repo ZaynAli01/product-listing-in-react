@@ -3,8 +3,17 @@ import { useNavigate } from "react-router-dom";
 import Icons from '../Icons/Icons'
 import './style.css'
 import Alert from '../Alert/Alert'
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
 
 export default function LoginSingUpForm() {
+
+  const handleGoogleLogin = (credentialResponse) => {
+    if (credentialResponse.credential) {
+      localStorage.setItem('token', JSON.stringify(credentialResponse.credential));
+      navigate("/dashboard");
+    }
+  };
 
   const [isActive, setActive] = useState(false)
   const [userDetail, setUserDetail] = useState({})
@@ -134,7 +143,7 @@ export default function LoginSingUpForm() {
               </div>
               <button>Login</button>
             </form>
-            <Icons />
+            <Icons handleGoogleLogin={handleGoogleLogin} />
           </div>
         </div>
 

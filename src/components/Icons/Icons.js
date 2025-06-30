@@ -1,15 +1,30 @@
-import React from 'react'
+import React, { useRef } from 'react'
+import { GoogleLogin } from '@react-oauth/google'
 
-export default function Icons() {
+
+export default function Icons({ handleGoogleLogin }) {
+  const intervalRef = useRef(null);
+  const focusInput = () => {
+    document.getElementsByClassName("L6cTce")[0].click()
+  };
   return (
     <>
       <p className='mt-3 mb-2'>Login with socail media platforms</p>
       <div className="socail-media-icons">
-        <i class="fa-brands fa-google"></i>
+        <div style={{ display: "none" }} ref={intervalRef}  >
+          <GoogleLogin
+            className='google-button'
+            onSuccess={handleGoogleLogin}
+            onError={() => {
+              console.log("Google Login Failed");
+            }}
+          />
+        </div>
+        <i class="fa-brands fa-google" onClick={focusInput}></i>
         <i class="fa-brands fa-facebook-f"></i>
         <i class="fa-brands fa-github"></i>
         <i class="fa-brands fa-linkedin-in"></i>
-      </div>
+      </div >
     </>
   )
 }
