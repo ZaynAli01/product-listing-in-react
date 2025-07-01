@@ -8,12 +8,7 @@ import { jwtDecode } from "jwt-decode";
 
 export default function LoginSingUpForm() {
 
-  const handleGoogleLogin = (credentialResponse) => {
-    if (credentialResponse.credential) {
-      localStorage.setItem('token', JSON.stringify(credentialResponse.credential));
-      navigate("/dashboard");
-    }
-  };
+  const facebookAppId = process.env.REACT_APP_FACEBOOK_CLIENT_ID;
 
   const [isActive, setActive] = useState(false)
   const [userDetail, setUserDetail] = useState({})
@@ -22,7 +17,54 @@ export default function LoginSingUpForm() {
 
   const navigate = useNavigate();
 
+  const handleGoogleLogin = (credentialResponse) => {
+    if (credentialResponse.credential) {
+      localStorage.setItem('authToken', JSON.stringify(credentialResponse.credential));
+      navigate("/dashboard");
+    }
+  };
+
+
   useEffect(() => {
+    // Inject Facebook SDK
+    window.fbAsyncInit = function () {
+      window.FB.init({
+        appId: facebookAppId,
+        cookie: true,
+        xfbml: true,
+        version: 'v19.0',
+      });
+    };
+
+    // Load Facebook SDK script
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'facebook-jssdk');
+  }, [facebookAppId]);
+
+  // ✅ Facebook Login Handler
+  const handleFacebookLogin = () => {
+    if (!window.FB) return;
+    window.FB.login(function (response) {
+      if (response.authResponse) {
+        window.FB.api('/me', { fields: 'name,email,picture' }, function (userInfo) {
+          localStorage.setItem('authToken', userInfo.id);
+          localStorage.setItem('profilePicture', userInfo.picture.data.url);
+          navigate("/dashboard");
+        });
+      } else {
+        console.log("User cancelled login or did not authorize.");
+      }
+    }, { scope: 'public_profile,email' });
+  };
+
+
+  useEffect(() => {
+    debugger
     let token = localStorage.getItem("authToken");
     if (token) {
       navigate("/dashboard"); // Redirect if token exists
@@ -143,7 +185,7 @@ export default function LoginSingUpForm() {
               </div>
               <button>Login</button>
             </form>
-            <Icons handleGoogleLogin={handleGoogleLogin} />
+            <Icons handleGoogleLogin={handleGoogleLogin} handleFacebookLogin={handleFacebookLogin} />
           </div>
         </div>
 
