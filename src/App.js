@@ -11,7 +11,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 function App() {
 
   return (
-    <GoogleOAuthProvider clientId="1036375601206-rnbf1196t2c61ekebrafmmmr66np37v3.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={process.env.REACT_GOOGLE_CLIENT_ID}>
       <Router>
         <Routes>
           <Route path="/" element={<LoginSingUpForm />} />
