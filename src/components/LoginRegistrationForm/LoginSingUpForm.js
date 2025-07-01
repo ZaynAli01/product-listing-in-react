@@ -64,7 +64,6 @@ export default function LoginSingUpForm() {
 
 
   useEffect(() => {
-    debugger
     let token = localStorage.getItem("authToken");
     if (token) {
       navigate("/dashboard"); // Redirect if token exists
