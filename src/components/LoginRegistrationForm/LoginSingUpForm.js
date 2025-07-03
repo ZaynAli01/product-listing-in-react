@@ -209,7 +209,7 @@ export default function LoginSingUpForm() {
               </div>
               <button>Login</button>
             </form>
-            <Icons handleGoogleLogin={handleGoogleLogin} linkedInLogin={linkedInLogin} handleFacebookLogin={handleFacebookLogin} />
+            <Icons handleGoogleLogin={handleGoogleLogin} linkedInLogin={linkedInLogin} handleFacebookLogin={handleFacebookLogin} loginWithGitHub={loginWithGitHub} />
           </div >
         </div >
 
