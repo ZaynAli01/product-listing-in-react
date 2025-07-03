@@ -8,13 +8,6 @@ import { jwtDecode } from "jwt-decode";
 
 export default function LoginSingUpForm() {
 
-  const handleGoogleLogin = (credentialResponse) => {
-    if (credentialResponse.credential) {
-      localStorage.setItem('token', JSON.stringify(credentialResponse.credential));
-      navigate("/dashboard");
-    }
-  };
-
   const [isActive, setActive] = useState(false)
   const [userDetail, setUserDetail] = useState({})
   const [isResponseSuccessful, setIsResponseSuccessful] = useState(false)
@@ -22,10 +15,32 @@ export default function LoginSingUpForm() {
 
   const navigate = useNavigate();
 
+  const handleGoogleLogin = (credentialResponse) => {
+    if (credentialResponse.credential) {
+      localStorage.setItem('token', JSON.stringify(credentialResponse.credential));
+      navigate("/dashboard");
+    }
+  };
+
+  const loginWithGitHub = () => {
+    const githubAuthURL = `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&redirect_uri=http://localhost:3000&scope=user`;
+    window.location.href = githubAuthURL
+  }
+
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+    const code = query.get('code');
+    if (code) {
+      localStorage.setItem('authToken', code);
+      navigate("/dashboard");
+    };
+  }, []);
+
+
   useEffect(() => {
     let token = localStorage.getItem("authToken");
     if (token) {
-      navigate("/dashboard"); // Redirect if token exists
+      navigate("/dashboard");
     }
   }, [navigate]);
 
@@ -48,7 +63,7 @@ export default function LoginSingUpForm() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         ...userDetail,
-        ['expiresInMins']: 30, // optional, defaults to 60
+        ['expiresInMins']: 30,
       }),
     })
       .then(async res => {
@@ -143,7 +158,7 @@ export default function LoginSingUpForm() {
               </div>
               <button>Login</button>
             </form>
-            <Icons handleGoogleLogin={handleGoogleLogin} />
+            <Icons handleGoogleLogin={handleGoogleLogin} loginWithGitHub={loginWithGitHub} />
           </div>
         </div>
 
