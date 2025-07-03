@@ -8,6 +8,8 @@ export default function NavBar() {
 
   const { handleHamburgerToggle, isActive } = useContext(CartContext)
 
+  const profilePicture = localStorage.getItem('profilePicture') || img;
+
   return (
     <div className={`${isActive ? 'active' : ''} nav-bar d-flex justify-content-between align-items-center`}>
       <div onClick={handleHamburgerToggle} className="hamburger animate__animated animate__fadeInDown"><i className="fa-solid fa-bars"></i></div>
@@ -18,7 +20,7 @@ export default function NavBar() {
       <div className="cart-img-box">
         <Cart />
         <div className="img-box animate__animated animate__fadeInDown ">
-          <img src={img} alt="" />
+          <img src={profilePicture ? profilePicture : img} alt="" />
         </div>
       </div>
     </div >
