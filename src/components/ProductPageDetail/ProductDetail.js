@@ -10,7 +10,7 @@ import CartContext from '../../contextApi/CartContext';
 function ProductDetail(WrappedComponent) {
   return function ProductDetailWrapper(props) {
     const { id } = useParams();
-    debugger
+
     const { addCartProduct } = useContext(CartContext)
 
 
@@ -25,7 +25,6 @@ function ProductDetail(WrappedComponent) {
 
     const extraInfo = (
       <>
-        {/* content */}
         <div data-aos="fade-left" className="product-detail">
           <section className="py-5">
             <div className="container m-0">
