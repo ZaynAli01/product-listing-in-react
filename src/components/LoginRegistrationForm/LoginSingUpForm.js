@@ -17,6 +17,7 @@ export default function LoginSingUpForm() {
   const navigate = useNavigate();
 
   const handleGoogleLogin = (credentialResponse) => {
+
     if (credentialResponse.credential) {
       localStorage.setItem('authToken', JSON.stringify(credentialResponse.credential));
       navigate("/dashboard");
@@ -28,6 +29,64 @@ export default function LoginSingUpForm() {
     window.location.href = githubAuthURL
   }
 
+
+  const linkedInLogin = () => {
+    const clientId = process.env.REACT_APP_LINKEDIN_CLIENT_ID;
+    const redirectUri = 'http://localhost:3000';
+    const state = 'secure_random_string';
+    const scope = "openid profile email";
+
+    window.location.href =
+      `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&state=${state}&scope=${encodeURIComponent(scope)}`;
+  };
+
+
+  useEffect(() => {
+    const code = new URLSearchParams(window.location.search).get('code');
+    if (!code) return;
+    localStorage.setItem('authToken', code)
+    navigate("/dashboard");
+  }, []);
+
+
+  useEffect(() => {
+    // Inject Facebook SDK
+    window.fbAsyncInit = function () {
+      window.FB.init({
+        appId: facebookAppId,
+        cookie: true,
+        xfbml: true,
+        version: 'v19.0',
+      });
+    };
+
+    // Load Facebook SDK script
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'facebook-jssdk');
+  }, [facebookAppId]);
+
+  // ✅ Facebook Login Handler
+  const handleFacebookLogin = () => {
+    if (!window.FB) return;
+    window.FB.login(function (response) {
+      if (response.authResponse) {
+        window.FB.api('/me', { fields: 'name,email,picture' }, function (userInfo) {
+          localStorage.setItem('authToken', userInfo.id);
+          localStorage.setItem('profilePicture', userInfo.picture.data.url);
+          navigate("/dashboard");
+        });
+      } else {
+        console.log("User cancelled login or did not authorize.");
+      }
+    }, { scope: 'public_profile,email' });
+  };
+
+=======
 
   const linkedInLogin = () => {
     const clientId = process.env.REACT_APP_LINKEDIN_CLIENT_ID;

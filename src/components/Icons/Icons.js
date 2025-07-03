@@ -3,6 +3,7 @@ import { GoogleLogin } from '@react-oauth/google'
 
 
 export default function Icons({ handleGoogleLogin, handleFacebookLogin, linkedInLogin, loginWithGitHub }) {
+ 
   const intervalRef = useRef(null);
   const focusInput = () => {
     document.getElementsByClassName("L6cTce")[0].click()
