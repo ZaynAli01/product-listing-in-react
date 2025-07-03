@@ -16,7 +16,7 @@ export default function CartState(props) {
     const updatedProducts = cartProducts.map((item) =>
       item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
     );
-    debugger
+
     setCartProducts(updatedProducts);
     setTotalPrice(totalPrice + product.price);
   };
@@ -60,7 +60,7 @@ export default function CartState(props) {
 
   // Add to cart product api
   const addCartProduct = (product) => {
-    debugger
+
     let user = JSON.parse(localStorage.getItem('user'))
 
     fetch('https://dummyjson.com/carts/add', {

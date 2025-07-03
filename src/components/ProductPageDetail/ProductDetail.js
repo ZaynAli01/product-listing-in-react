@@ -10,10 +10,7 @@ import CartContext from '../../contextApi/CartContext';
 function ProductDetail(WrappedComponent) {
   return function ProductDetailWrapper(props) {
     const { id } = useParams();
-
     const { addCartProduct } = useContext(CartContext)
-
-
 
     const [productDetail, setProductDetail] = useState({})
 
