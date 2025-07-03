@@ -44,14 +44,6 @@ export default function LoginSingUpForm() {
   }, []);
 
 
-  const handleGoogleLogin = (credentialResponse) => {
-    if (credentialResponse.credential) {
-      localStorage.setItem('authToken', JSON.stringify(credentialResponse.credential));
-      navigate("/dashboard");
-    }
-  };
-
-
   useEffect(() => {
     // Inject Facebook SDK
     window.fbAsyncInit = function () {
