@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { GoogleLogin } from '@react-oauth/google'
 
 
-export default function Icons({ handleGoogleLogin, linkedInLogin }) {
+export default function Icons({ handleGoogleLogin, handleFacebookLogin, linkedInLogin }) {
   const intervalRef = useRef(null);
   const focusInput = () => {
     document.getElementsByClassName("L6cTce")[0].click()
@@ -22,8 +22,9 @@ export default function Icons({ handleGoogleLogin, linkedInLogin }) {
         </div>
         <i class="fa-brands fa-google" onClick={focusInput}></i>
         <i class="fa-brands fa-facebook-f"></i>
-        <i class="fa-brands fa-github" ></i>
         <i class="fa-brands fa-linkedin-in" onClick={linkedInLogin}></i>
+        <i class="fa-brands fa-facebook-f" onClick={handleFacebookLogin}></i>
+        <i class="fa-brands fa-github"></i>
       </div >
     </>
   )
