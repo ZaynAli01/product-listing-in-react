@@ -12,8 +12,6 @@ function ProductDetail(WrappedComponent) {
     const { id } = useParams();
     const { addCartProduct } = useContext(CartContext)
 
-
-
     const [productDetail, setProductDetail] = useState({})
 
     useEffect(() => {
@@ -24,7 +22,6 @@ function ProductDetail(WrappedComponent) {
 
     const extraInfo = (
       <>
-        {/* content */}
         <div data-aos="fade-left" className="product-detail">
           <section className="py-5">
             <div className="container m-0">
