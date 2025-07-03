@@ -5,7 +5,7 @@ import CartContext from '../../contextApi/CartContext'
 export default function Cart() {
 
   const cart = useContext(CartContext)
-  debugger
+
   return (
     <div className="d-flex justify-content-end">
       < div className="btn-group" >
